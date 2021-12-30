@@ -1,0 +1,559 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+SpotBugs:     PASSED
+PMD:          FAILED (1 warning)
+Checkstyle:   FAILED (0 errors, 1 warning)
+
+Correctness:  30/33 tests passed
+Memory:       No tests available for autograding.
+Timing:       No tests available for autograding.
+
+Aggregate score: 91.82%
+[ Compilation: 5%, API: 5%, Style: 0%, Correctness: 90% ]
+
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 469 Dec  3 12:12 Checkerboard.java
+ 834 Dec  3 12:12 ShannonEntropy.java
+ 652 Dec  3 12:12 WorldMap.java
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac ShannonEntropy.java
+*-----------------------------------------------------------
+
+% javac Checkerboard.java
+*-----------------------------------------------------------
+
+% javac WorldMap.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+ShannonEntropy:
+
+Checkerboard:
+
+WorldMap:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+WorldMap.java:9: Avoid unused local variables, such as 'state'. [UnusedLocalVariable]
+PMD ends with 1 warning.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for ShannonEntropy.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Checkerboard.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for WorldMap.java
+*-----------------------------------------------------------
+[WARN] WorldMap.java:1: You will get substantially improved performance if you call 'StdDraw.enableDoubleBuffering()' once at the beginning if this program and 'StdDraw.show()' once at the end of this program. [Design]
+Checkstyle ends with 0 errors and 1 warning.
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of ShannonEntropy
+*-----------------------------------------------------------
+Running 12 total tests.
+
+Test 1: check output format
+  % java-introcs ShannonEntropy 2 < fair-coin.txt
+  1.0000
+
+  % java-introcs ShannonEntropy 6 < loaded-die.txt
+  1.8750
+
+  % java-introcs ShannonEntropy 100 < letters100.txt
+  4.3798
+
+==> passed
+
+Test 2: check that program reads all data from standard input
+  * java-introcs ShannonEntropy < fair-coin.txt
+  * java-introcs ShannonEntropy < loaded-die.txt
+  * java-introcs ShannonEntropy < letters100.txt
+==> passed
+
+Test 3: check correctness for fixed inputs
+  * java-introcs ShannonEntropy 2 < fair-coin.txt
+  * java-introcs ShannonEntropy 2 < biased-coin.txt
+  * java-introcs ShannonEntropy 6 < loaded-die.txt
+  * java-introcs ShannonEntropy 100 < letters100.txt
+  * java-introcs ShannonEntropy 3 < roshambo.txt
+==> passed
+
+Test 4: check correctness when entropy is 0
+  * m = 1, all 1s
+  * m = 2, all 1s
+  * m = 2, all 2s
+  * m = 6, all 1s
+  * m = 6, all 3s
+  * m = 6, all 6s
+  * m = 100, all 100s
+==> passed
+
+Test 5: check correctness for random inputs with p_i > 0 for all i
+  * 10 random integers between 1 and 2
+  * 100 random integers between 1 and 2
+  * 20 random integers between 1 and 6
+  * 1000 random integers between 1 and 6
+  * 1000 random integers between 1 and 26
+==> passed
+
+Test 6: check correctness for random inputs with p_m = 0
+  * 10 random integers between 1 and 6
+  * 50 random integers between 1 and 10
+==> passed
+
+Test 7: check correctness for random inputs with p_i = 0 for some i
+  * 10 random integers between 1 and 6
+  * 100 random integers between 1 and 6
+  * 50 random integers between 1 and 26
+  * 1000 random integers between 1 and 26
+==> passed
+
+Test 8: check correctness for random inputs with m = n
+  * 2 random integers between 1 and 2
+  * 3 random integers between 1 and 3
+  * 4 random integers between 1 and 4
+  * 6 random integers between 1 and 6
+==> passed
+
+Test 9: check correctness for random inputs with m > n
+  * 3 random integers between 1 and 6
+  * 10 random integers between 1 and 26
+==> passed
+
+Test 10: check correctness for inputs with large n
+  * java-introcs ShannonEntropy 26 < letters.txt
+==> passed
+
+Test 11: check correctness for inputs with large m
+  * java-introcs ShannonEntropy 1000000 < ids20.txt
+==> passed
+
+Test 12: check correctness for inputs with large m and n
+  * java-introcs ShannonEntropy 1000000 < ids100000.txt
+  * java-introcs ShannonEntropy 1000000 < ids1000000.txt
+==> passed
+
+Total: 12/12 tests passed!
+
+
+================================================================
+Testing correctness of Checkerboard
+*-----------------------------------------------------------
+Running 12 total tests.
+
+Test 1: check output format
+  % java Checkerboard 1
+  [no output]
+
+  % java Checkerboard 2
+  [no output]
+
+  % java Checkerboard 3
+  [no output]
+
+  % java Checkerboard 4
+  [no output]
+
+  % java Checkerboard 5
+  [no output]
+
+  % java Checkerboard 6
+  [no output]
+
+==> passed
+
+Test 2: check formatting of standard drawing
+  * java Checkerboard 1
+  [no output]
+
+  * java Checkerboard 2
+  [no output]
+
+  * java Checkerboard 3
+  [no output]
+
+  * java Checkerboard 4
+  [no output]
+
+  * java Checkerboard 5
+  [no output]
+
+  * java Checkerboard 6
+  [no output]
+
+==> passed
+
+Test 3: check number of filled polygons
+  * n = 1
+  * n = 2
+  * n = 3
+  * n = 4
+  * n = 5
+  * n = 6
+==> passed
+
+Test 4: check correctness, ignoring color
+  * n = 1
+  * n = 2
+  * n = 3
+  * n = 4
+  * n = 5
+  * n = 6
+==> passed
+
+Test 5: check that lower-left square is blue for odd n
+  * n = 1
+  * n = 3
+  * n = 5
+  * n = 7
+  * n = 9
+==> passed
+
+Test 6: check that lower-left square is blue for even n
+  * n = 2
+  * n = 4
+  * n = 6
+  * n = 8
+  * n = 10
+==> passed
+
+Test 7: check that lower-left square is blue for large n
+  * 10 <= n < 20
+  * 20 <= n < 30
+  * 30 <= n < 50
+==> passed
+
+Test 8: check that it draws a checkerboard pattern for even n
+  * n = 2
+    - number of entries in student   solution: 4
+    - number of entries in reference solution: 4
+    - 4 extra entries in student solution, including:
+      shape = filled square; vertices = [(1.0, 1.0), (1.0, 2.0), (2.0, 2.0), (2.0, 1.0)]; color = blue
+    - 4 missing entries in student solution, including:
+      shape = filled square; vertices = [(1.0, 1.0), (1.0, 2.0), (2.0, 2.0), (2.0, 1.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 4
+    - number of entries in student   solution: 16
+    - number of entries in reference solution: 16
+    - 16 extra entries in student solution, including:
+      shape = filled square; vertices = [(3.0, 3.0), (3.0, 4.0), (4.0, 4.0), (4.0, 3.0)]; color = blue
+    - 16 missing entries in student solution, including:
+      shape = filled square; vertices = [(3.0, 3.0), (3.0, 4.0), (4.0, 4.0), (4.0, 3.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 6
+    - number of entries in student   solution: 36
+    - number of entries in reference solution: 36
+    - 36 extra entries in student solution, including:
+      shape = filled square; vertices = [(5.0, 5.0), (5.0, 6.0), (6.0, 6.0), (6.0, 5.0)]; color = blue
+    - 36 missing entries in student solution, including:
+      shape = filled square; vertices = [(5.0, 5.0), (5.0, 6.0), (6.0, 6.0), (6.0, 5.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 8
+    - number of entries in student   solution: 64
+    - number of entries in reference solution: 64
+    - 64 extra entries in student solution, including:
+      shape = filled square; vertices = [(7.0, 7.0), (7.0, 8.0), (8.0, 8.0), (8.0, 7.0)]; color = blue
+    - 64 missing entries in student solution, including:
+      shape = filled square; vertices = [(7.0, 7.0), (7.0, 8.0), (8.0, 8.0), (8.0, 7.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 10
+    - number of entries in student   solution: 100
+    - number of entries in reference solution: 100
+    - 100 extra entries in student solution, including:
+      shape = filled square; vertices = [(9.0, 9.0), (9.0, 10.0), (10.0, 10.0), (10.0, 9.0)]; color = blue
+    - 100 missing entries in student solution, including:
+      shape = filled square; vertices = [(9.0, 9.0), (9.0, 10.0), (10.0, 10.0), (10.0, 9.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+==> FAILED
+
+Test 9: check that it draws a checkerboard pattern for odd n
+  * n = 1
+  * n = 3
+    - number of entries in student   solution: 9
+    - number of entries in reference solution: 9
+    - 9 extra entries in student solution, including:
+      shape = filled square; vertices = [(2.0, 2.0), (2.0, 3.0), (3.0, 3.0), (3.0, 2.0)]; color = blue
+    - 9 missing entries in student solution, including:
+      shape = filled square; vertices = [(2.0, 2.0), (2.0, 3.0), (3.0, 3.0), (3.0, 2.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 5
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 25
+    - 25 extra entries in student solution, including:
+      shape = filled square; vertices = [(4.0, 4.0), (4.0, 5.0), (5.0, 5.0), (5.0, 4.0)]; color = blue
+    - 25 missing entries in student solution, including:
+      shape = filled square; vertices = [(4.0, 4.0), (4.0, 5.0), (5.0, 5.0), (5.0, 4.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 7
+    - number of entries in student   solution: 49
+    - number of entries in reference solution: 49
+    - 49 extra entries in student solution, including:
+      shape = filled square; vertices = [(6.0, 6.0), (6.0, 7.0), (7.0, 7.0), (7.0, 6.0)]; color = blue
+    - 49 missing entries in student solution, including:
+      shape = filled square; vertices = [(6.0, 6.0), (6.0, 7.0), (7.0, 7.0), (7.0, 6.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+  * n = 9
+    - number of entries in student   solution: 81
+    - number of entries in reference solution: 81
+    - 81 extra entries in student solution, including:
+      shape = filled square; vertices = [(8.0, 8.0), (8.0, 9.0), (9.0, 9.0), (9.0, 8.0)]; color = blue
+    - 81 missing entries in student solution, including:
+      shape = filled square; vertices = [(8.0, 8.0), (8.0, 9.0), (9.0, 9.0), (9.0, 8.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+==> FAILED
+
+Test 10: check that it draws a checkerboard pattern for larger n
+  * 10 <= n < 20
+    - number of entries in student   solution: 100
+    - number of entries in reference solution: 100
+    - 100 extra entries in student solution, including:
+      shape = filled square; vertices = [(9.0, 9.0), (9.0, 10.0), (10.0, 10.0), (10.0, 9.0)]; color = blue
+    - 100 missing entries in student solution, including:
+      shape = filled square; vertices = [(9.0, 9.0), (9.0, 10.0), (10.0, 10.0), (10.0, 9.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+    - failed for n = 10
+
+  * 20 <= n < 30
+    - number of entries in student   solution: 400
+    - number of entries in reference solution: 400
+    - 400 extra entries in student solution, including:
+      shape = filled square; vertices = [(19.0, 19.0), (19.0, 20.0), (20.0, 20.0), (20.0, 19.0)]; color = blue
+    - 400 missing entries in student solution, including:
+      shape = filled square; vertices = [(19.0, 19.0), (19.0, 20.0), (20.0, 20.0), (20.0, 19.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+    - failed for n = 20
+
+  * 30 <= n < 50
+    - number of entries in student   solution: 900
+    - number of entries in reference solution: 900
+    - 900 extra entries in student solution, including:
+      shape = filled square; vertices = [(29.0, 29.0), (29.0, 30.0), (30.0, 30.0), (30.0, 29.0)]; color = blue
+    - 900 missing entries in student solution, including:
+      shape = filled square; vertices = [(29.0, 29.0), (29.0, 30.0), (30.0, 30.0), (30.0, 29.0)]; color = light gray
+
+    - draws wrong set of filled polygons
+
+    - failed for n = 30
+
+==> FAILED
+
+Test 11: check number of calls to StdDraw.setXscale() and StdDraw.setYscale()
+  * n = 2
+  * n = 4
+  * n = 6
+  * n = 8
+  * n = 9
+==> passed
+
+Test 12: check arguments to StdDraw.setXscale() and StdDraw.setYscale()
+  * n = 2
+  * n = 4
+  * n = 6
+  * n = 8
+  * n = 9
+==> passed
+
+
+Checkerboard Total: 9/12 tests passed!
+
+
+================================================================
+Testing correctness of WorldMap
+*-----------------------------------------------------------
+Running 9 total tests.
+
+Test 1: check formatting of standard output
+  % java WorldMap < square.txt
+  [no output]
+
+  % java WorldMap < shapes.txt
+  [no output]
+
+  % java WorldMap < usa.txt
+  [no output]
+
+  % java WorldMap < russia.txt
+  [no output]
+
+  % java WorldMap < india.txt
+  [no output]
+
+  % java WorldMap < world-low-resolution.txt
+  [no output]
+
+==> passed
+
+Test 2: check that program reads all data from standard input
+  * java-introcs WorldMap < square.txt
+  * java-introcs WorldMap < shapes.txt
+  * java-introcs WorldMap < usa.txt
+  * java-introcs WorldMap < russia.txt
+  * java-introcs WorldMap < india.txt
+==> passed
+
+Test 3: check formatting of standard drawing
+  * java WorldMap < square.txt
+  [no output]
+
+  * java WorldMap < shapes.txt
+  [no output]
+
+  * java WorldMap < usa.txt
+  [no output]
+
+  * java WorldMap < russia.txt
+  [no output]
+
+  * java WorldMap < india.txt
+  [no output]
+
+  * java WorldMap < world-low-resolution.txt
+  [no output]
+
+==> passed
+
+Test 4: check number of polygons
+  * file = square.txt
+  * file = shapes.txt
+  * file = usa.txt
+  * file = russia.txt
+  * file = india.txt
+  * file = world-low-resolution.txt
+==> passed
+
+Test 5: check correctness for input files
+  * Square                         square.txt                    
+  * Triange, Square, and Pentagon  shapes.txt                    
+  * USA                            usa.txt                       
+  * Russia                         russia.txt                    
+  * India                          india.txt                     
+  * World (low resolution)         world-low-resolution.txt      
+==> passed
+
+Test 6: check correctness for input files with one polygon
+  * Hilbert polygon of order 1     hilbert1.txt                  
+  * Hilbert polygon of order 2     hilbert2.txt                  
+  * Hilbert polygon of order 3     hilbert3.txt                  
+  * Hilbert polygon of order 4     hilbert4.txt                  
+  * Hilbert polygon of order 5     hilbert5.txt                  
+  * Hilbert polygon of order 6     hilbert6.txt                  
+==> passed
+
+Test 7: check correctness for random countries
+  * Slovenia                       world/slovenia.txt            
+  * Kazakhstan                     world/kazakhstan.txt          
+  * Nepal                          world/nepal.txt               
+  * United Arab Emirates           world/united-arab-emirates.txt
+  * Rwanda                         world/rwanda.txt              
+  * Macedonia                      world/macedonia.txt           
+  * Belarus                        world/belarus.txt             
+  * Canada                         world/canada.txt              
+  * Turkey                         world/turkey.txt              
+  * United Kingdom                 world/united-kingdom.txt      
+  * El Salvador                    world/el-salvador.txt         
+  * Congo                          world/congo.txt               
+  * Bosnia Herzegovina 2           world/bosnia-herzegovina-2.txt
+  * Norway                         world/norway.txt              
+  * Mexico                         world/mexico.txt              
+==> passed
+
+Test 8: check correctness for random states in USA
+  * Illinois                       usa/usa-il.txt                
+  * Maryland                       usa/usa-md.txt                
+  * North Dakota                   usa/usa-nd.txt                
+  * West Virginia                  usa/usa-wv.txt                
+  * Nebraska                       usa/usa-ne.txt                
+  * South Carolina                 usa/usa-sc.txt                
+  * Virginia                       usa/usa-va.txt                
+  * Utah                           usa/usa-ut.txt                
+  * Minnesota                      usa/usa-mn.txt                
+  * New York                       usa/usa-ny.txt                
+  * Wyoming                        usa/usa-wy.txt                
+  * North Carolina                 usa/usa-nc.txt                
+  * South Dakota                   usa/usa-sd.txt                
+  * Tennessee                      usa/usa-tn.txt                
+  * Washington                     usa/usa-wa.txt                
+==> passed
+
+Test 9: check correctness of large input files
+  * USA (all counties)             usa-all-counties.txt          
+  * World                          world.txt                     
+==> passed
+
+
+WorldMap Total: 9/9 tests passed!
+
+
+================================================================
